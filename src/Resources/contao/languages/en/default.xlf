@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/default.php" source-language="en">
+    <body>
+      <trans-unit id="FFL.term.0">
+        <source>Term</source>
+      </trans-unit>
+      <trans-unit id="FFL.term.1">
+        <source>Provides a term checkbox.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
+

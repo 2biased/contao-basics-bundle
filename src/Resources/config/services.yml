@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    2biased.conato.basics.event_listeners:
+        namespace: TwoBiased\ContaoBasicsBundle\EventListener\
+        resource: '../../EventListener'
+
+    2biased.conato.basics.controllers:
+        namespace: TwoBiased\ContaoBasicsBundle\Controller\
+        resource: '../../Controller'

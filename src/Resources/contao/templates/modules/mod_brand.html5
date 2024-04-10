@@ -1,0 +1,10 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('headline'); ?>
+<?php $this->endblock(); ?>
+
+<?php $this->block('content'); ?>
+  <a href="<?= $this->href ?>"<?php if ($this->linkTitle): ?> title="<?= $this->linkTitle ?>"<?php endif; ?><?= $this->attributes ?>>
+    <?php $this->insert('picture_default', $this->picture); ?>
+  </a>
+<?php $this->endblock(); ?>

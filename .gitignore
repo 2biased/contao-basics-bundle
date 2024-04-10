@@ -1,0 +1,7 @@
+# Composer
+/composer.lock
+/vendor/
+
+# Composer bin
+/tools/*/vendor
+/tools/*/composer.lock

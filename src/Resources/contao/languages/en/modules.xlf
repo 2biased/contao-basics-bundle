@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<xliff version="1.1">
+  <file source-language="en">
+    <body>
+      <trans-unit id="FMD.brand.0">
+        <source>Brand logo</source>
+      </trans-unit>
+      <trans-unit id="FMD.brand.1">
+        <source>Generates an image link to the root page</source>
+      </trans-unit>
+      <trans-unit id="FMD.container.0">
+        <source>Module container</source>
+      </trans-unit>
+      <trans-unit id="FMD.container.1">
+        <source>Groups multiple modules</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

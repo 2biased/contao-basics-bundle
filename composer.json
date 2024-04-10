@@ -1,0 +1,35 @@
+{
+    "name": "2biased/contao-basics-bundle",
+    "description": "",
+    "keywords": ["contao", "module"],
+    "type": "contao-bundle",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "2biased",
+            "email": "2biased@proton.me"
+        }
+    ],
+    "require": {
+        "php": "~8.0",
+        "contao/core-bundle": "^4.13",
+        "heimrichhannot/contao-multi-column-editor-bundle": "^2.20"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.3"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "autoload":{
+        "psr-4": {
+            "TwoBiased\\ContaoBasicsBundle\\": "src/"
+        }
+    },
+    "extra":{
+        "contao-manager-plugin": "TwoBiased\\ContaoBasicsBundle\\ContaoManager\\Plugin"
+    },
+    "scripts": {
+        "cs-fixer": "@php tools/ecs/vendor/bin/ecs check src tools/ecs/config --config tools/ecs/config/default.php --fix --ansi"
+    }
+}

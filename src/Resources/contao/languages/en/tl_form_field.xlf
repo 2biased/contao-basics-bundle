@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_form_field.php" source-language="en">
+    <body>
+      <trans-unit id="tl_form_field.iban.0">
+        <source>IBAN</source>
+      </trans-unit>
+      <trans-unit id="tl_form_field.iban.1">
+        <source>Checks whether the input is a valid IBAN.</source>
+      </trans-unit>
+      <trans-unit id="tl_form_field.ibanAllowedCountryCodes.0">
+        <source>Allowed IBAN country codes</source>
+      </trans-unit>
+      <trans-unit id="tl_form_field.ibanAllowedCountryCodes.1">
+        <source>Select the allowed country codes or leave the slection empty to accept all country codes.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
