@@ -5,3 +5,9 @@
 # Composer bin
 /tools/*/vendor
 /tools/*/composer.lock
+
+# PHPStorm
+.idea/
+
+# Mac
+.DS_Store
