@@ -12,15 +12,13 @@ declare(strict_types=1);
 
 namespace TwoBiased\ContaoBasicsBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\ModuleModel;
 
 class ModuleListener
 {
-    /**
-     * @Callback(table="tl_module", target="fields.modules.eval.multiColumnEditor.fields.item.options")
-     */
+    #[AsCallback(table: 'tl_module', target: 'fields.modules.eval.multiColumnEditor.fields.item.options')]
     public function getModules(DataContainer $dc): array
     {
         $arrModules = [];

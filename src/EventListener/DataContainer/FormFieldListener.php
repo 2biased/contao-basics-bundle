@@ -12,15 +12,13 @@ declare(strict_types=1);
 
 namespace TwoBiased\ContaoBasicsBundle\EventListener\DataContainer;
 
-use Contao\CoreBundle\ServiceAnnotation\Callback;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\FormFieldModel;
 
 class FormFieldListener
 {
-    /**
-     * @Callback(table="tl_form_field", target="config.onload")
-     */
+    #[AsCallback(table: 'tl_form_field', target: 'config.onload')]
     public function adjustDcaByType(DataContainer|null $dc = null): void
     {
         if (($objField = FormFieldModel::findById($dc->id)) !== null) {

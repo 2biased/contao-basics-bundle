@@ -5,8 +5,8 @@ services:
 
     2biased.conato.basics.event_listeners:
         namespace: TwoBiased\ContaoBasicsBundle\EventListener\
-        resource: '../../EventListener'
+        resource: '../src/EventListener'
 
     2biased.conato.basics.controllers:
         namespace: TwoBiased\ContaoBasicsBundle\Controller\
-        resource: '../../Controller'
+        resource: '../src/Controller'
