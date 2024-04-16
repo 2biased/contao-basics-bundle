@@ -2,7 +2,7 @@
 
 <?php $this->block('content'); ?>
 
-  <?php foreach ($this->modules as $alias => $module) : ?>
+  <?php foreach ($this->modules as $module) : ?>
     <?= $module ?>
   <?php endforeach; ?>
 

@@ -16,7 +16,8 @@
         "heimrichhannot/contao-multi-column-editor-bundle": "^2.20"
     },
     "require-dev": {
-        "contao/manager-plugin": "^2.3"
+        "contao/manager-plugin": "^2.3",
+        "terminal42/contao-build-tools": "@dev"
     },
     "conflict": {
         "contao/manager-plugin": "<2.0 || >=3.0"
@@ -29,7 +30,19 @@
     "extra":{
         "contao-manager-plugin": "TwoBiased\\ContaoBasicsBundle\\ContaoManager\\Plugin"
     },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": true,
+            "php-http/discovery": true,
+            "contao/manager-plugin": true,
+            "terminal42/contao-build-tools": true
+        }
+    },
     "scripts": {
-        "cs-fixer": "@php tools/ecs/vendor/bin/ecs check src tools/ecs/config --config tools/ecs/config/default.php --fix --ansi"
+        "all": [
+            "@cs-fixer",
+            "@rector",
+            "@phpstan"
+        ]
     }
 }

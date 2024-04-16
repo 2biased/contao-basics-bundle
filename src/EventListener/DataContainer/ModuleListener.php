@@ -21,7 +21,7 @@ class ModuleListener
     /**
      * @Callback(table="tl_module", target="fields.modules.eval.multiColumnEditor.fields.item.options")
      */
-    public function getModules(DataContainer $dc)
+    public function getModules(DataContainer $dc): array
     {
         $arrModules = [];
 
@@ -34,7 +34,7 @@ class ModuleListener
                 $arrModules[$objModules->id] = sprintf(
                     '%s [%s]',
                     $objModules->name,
-                    (isset($GLOBALS['TL_LANG']['FMD'][$objModules->type]) ? $GLOBALS['TL_LANG']['FMD'][$objModules->type][0] : $objModules->type)
+                    isset($GLOBALS['TL_LANG']['FMD'][$objModules->type]) ? $GLOBALS['TL_LANG']['FMD'][$objModules->type][0] : $objModules->type,
                 );
             }
         }

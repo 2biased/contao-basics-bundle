@@ -14,7 +14,6 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['brand'] = '{title_legend},name,type
 $GLOBALS['TL_DCA']['tl_module']['palettes']['container'] = '{title_legend},name,type;{config_legend},modules;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['modules'] = [
-    'exclude' => true,
     'label' => &$GLOBALS['TL_LANG']['tl_module']['modules'],
     'exclude' => true,
     'inputType' => 'multiColumnEditor',

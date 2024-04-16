@@ -14,6 +14,7 @@ namespace TwoBiased\ContaoBasicsBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
+use Contao\Environment;
 use Contao\FilesModel;
 use Contao\ModuleModel;
 use Contao\PageModel;

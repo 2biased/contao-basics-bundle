@@ -18,8 +18,11 @@ use Contao\Widget;
 class Term extends Widget
 {
     protected $blnSubmitInput = true;
+
     protected $blnForAttribute = true;
+
     protected $strTemplate = 'form_term';
+
     protected $strPrefix = 'widget widget-term';
 
     public function __set($strKey, $varValue): void
@@ -35,7 +38,7 @@ class Term extends Widget
                 break;
 
             case 'text':
-                $this->text = StringUtil::encodeEmail($varValue);
+                parent::__set($strKey, StringUtil::encodeEmail($varValue));
                 break;
 
             default:
@@ -44,7 +47,7 @@ class Term extends Widget
         }
     }
 
-    public function isAccepted()
+    public function isAccepted(): string
     {
         return empty($this->varValue) ? '' : ' checked';
     }
