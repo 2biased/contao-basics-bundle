@@ -1,0 +1,7 @@
+{% extends "@Contao/frontend_module/_base.html.twig" %}
+
+{% block content %}
+    {% for module in modules %}
+        {{ frontend_module(module) }}
+    {% endfor %}
+{% endblock %}

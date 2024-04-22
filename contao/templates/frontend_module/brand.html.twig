@@ -1,0 +1,6 @@
+{% extends "@Contao/frontend_module/_base.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block content %}
+    {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
+{% endblock %}

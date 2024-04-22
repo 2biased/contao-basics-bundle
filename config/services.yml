@@ -7,6 +7,9 @@ services:
         namespace: TwoBiased\ContaoBasicsBundle\EventListener\
         resource: '../src/EventListener'
 
-    2biased.conato.basics.controllers:
-        namespace: TwoBiased\ContaoBasicsBundle\Controller\
-        resource: '../src/Controller'
+    TwoBiased\ContaoBasicsBundle\Controller\FrontendModule\BrandController:
+        arguments:
+            - '@contao.routing.content_url_generator'
+            - '@contao.image.studio'
+
+    TwoBiased\ContaoBasicsBundle\Controller\FrontendModule\ContainerController: ~

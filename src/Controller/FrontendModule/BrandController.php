@@ -14,48 +14,55 @@ namespace TwoBiased\ContaoBasicsBundle\Controller\FrontendModule;
 
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
-use Contao\Environment;
-use Contao\FilesModel;
+use Contao\CoreBundle\Image\Studio\Studio;
+use Contao\CoreBundle\Routing\ContentUrlGenerator;
+use Contao\CoreBundle\String\HtmlAttributes;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
 use Contao\PageModel;
-use Contao\System;
-use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsFrontendModule(category: 'miscellaneous', template: 'mod_brand')]
+#[AsFrontendModule(category: 'miscellaneous')]
 class BrandController extends AbstractFrontendModuleController
 {
-    protected function getResponse(Template $template, ModuleModel $model, Request $request): Response
+    public function __construct(
+        private readonly ContentUrlGenerator $urlGenerator,
+        private readonly Studio $studio,
+    ) {
+    }
+
+    protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
         $page = $this->getPageModel();
 
-        if (($logo = FilesModel::findByUuid($page->brand_logo)) !== null && file_exists(System::getContainer()->getParameter('kernel.project_dir').'/'.$logo->path)) {
-            $figure = System::getContainer()
-                ->get('contao.image.studio')
-                ->createFigureBuilder()
-                ->from($logo)
-                ->setSize($model->imgSize)
-                ->buildIfResourceExists()
-            ;
-
-            if (null !== $figure) {
-                $figure->applyLegacyTemplateData($template);
-            } else {
-                return new Response();
-            }
+        if ($rootPage = PageModel::findFirstPublishedByPid($page->rootId)) {
+            $href = $this->urlGenerator->generate($rootPage);
         } else {
+            $href = $request->getUri();
+        }
+
+        $linkAttributes = (new HtmlAttributes())
+            ->set('href', $href)
+            ->setIfExists('title', $page->rootPageTitle ?: $page->rootTitle)
+        ;
+
+        $template->set('href', $href);
+        $template->set('link_attributes', $linkAttributes);
+
+        $figure = $this->studio
+            ->createFigureBuilder()
+            ->fromUuid($page->brand_logo ?: '')
+            ->setSize($model->imgSize)
+            ->setLinkAttributes($linkAttributes)
+            ->buildIfResourceExists()
+        ;
+
+        if (null === $figure) {
             return new Response();
         }
 
-        if ($homePage = PageModel::findFirstPublishedByPid($page->rootId)) {
-            $href = $homePage->getFrontendUrl();
-        } else {
-            $href = Environment::get('url');
-        }
-
-        $template->href = $href ?: '/';
-        $template->linkTitle = $page->rootPageTitle ?: $page->rootTitle;
+        $template->set('image', $figure);
 
         return $template->getResponse();
     }

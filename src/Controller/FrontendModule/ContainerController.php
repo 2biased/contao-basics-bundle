@@ -12,31 +12,26 @@ declare(strict_types=1);
 
 namespace TwoBiased\ContaoBasicsBundle\Controller\FrontendModule;
 
-use Contao\Controller;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsFrontendModule;
+use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\ModuleModel;
 use Contao\StringUtil;
-use Contao\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsFrontendModule(category: 'miscellaneous', template: 'mod_container')]
+#[AsFrontendModule(category: 'miscellaneous')]
 class ContainerController extends AbstractFrontendModuleController
 {
-    protected function getResponse(Template $template, ModuleModel $model, Request $request): Response
+    protected function getResponse(FragmentTemplate $template, ModuleModel $model, Request $request): Response
     {
-        $modules = [];
-
-        foreach (StringUtil::deserialize($model->modules, true) as $moduleId) {
-            $modules[$moduleId['alias']] = Controller::getFrontendModule($moduleId['item']);
-        }
+        $modules = array_reduce(StringUtil::deserialize($model->modules, true), static fn ($carry, array $module) => array_merge($carry, [$module['alias'] => $module['item']]), []);
 
         if (empty($modules)) {
             return new Response();
         }
 
-        $template->modules = $modules;
+        $template->set('modules', $modules);
 
         return $template->getResponse();
     }
