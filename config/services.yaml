@@ -1,6 +1,5 @@
 services:
     _defaults:
-        autowire: true
         autoconfigure: true
 
     2biased.conato.basics.event_listeners:
